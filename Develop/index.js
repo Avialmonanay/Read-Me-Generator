@@ -1,5 +1,6 @@
 const fs = require('fs')
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const License = require('./generateMarkdown');
 // TODO: Create an array of questions for user input
 inquirer
   .prompt([
@@ -49,13 +50,32 @@ inquirer
         name: 'email',
       },
       {
-        type: 'license',
-        message: 'Please provide the license information of your application',
+        type: 'checkbox',
+        message: 'What kind of license does your application have? please choose 1',
+        choices: ['Apache 2.0', 'GNU General Public License v3.0', 'MIT', 'ISC' ],
         name: 'license',
+      },
+      {
+        type: 'input',
+        message: 'What is the year of your license?',
+        name: 'year',
+      },
+      {
+        type: 'input',
+        message: 'What is your full name for license information',
+        name: 'lname',
       },
   ])
 .then((answers) => {
-    console.log(answers);
+  const license = new License()
+  const str = answers.license;
+  const strYear = answers.year;
+  const strName = answers.lname;
+  const licenseBadge = license.renderLicenseBadge(str);
+  const licenseLink = license.renderLicenseLink(str, strYear, strName)
+    // console.log(str);
+    console.log (licenseBadge)
+    console.log(licenseLink)
     const generateFile = (answers) => {
       return `# ${answers.title}
 ${answers.description}
@@ -93,13 +113,15 @@ If you have any additional questions please email me at ${answers.email}`
 
 
     };
-    writeToFile('README.md', generateFile(answers));
+    writeToFile('README.md', generateFile(answers), answers);
   });
-function writeToFile(fileName, data) {
+function writeToFile(fileName, data,) {
     console.log(fileName)
+
   fs.writeFile(fileName, data, (err) => {
     if (err) throw err;
   });
+  
 }
 
 
