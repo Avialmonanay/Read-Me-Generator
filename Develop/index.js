@@ -71,13 +71,31 @@ inquirer
   const str = answers.license;
   const strYear = answers.year;
   const strName = answers.lname;
-  const licenseBadge = license.renderLicenseBadge(str);
-  const licenseLink = license.renderLicenseLink(str, strYear, strName)
+  const licenseBadgeRender = license.renderLicenseBadge(str);
+  if (!licenseBadgeRender){
+    var licenseBadge = ""
+  }
+  else {
+    var licenseBadge = licenseBadgeRender
+  }
+
+  
+  const licenseLinkRender = license.renderLicenseLink(str, strYear, strName)
+  if (!licenseLinkRender){
+    var licenseLink = ""
+    var licenseSection = ""
+    var licenseTOC = ""
+  }
+  else {
+    var licenseSection = "## License"
+    var licenseLink = licenseLinkRender
+    var licenseTOC = "- [License](#license)"
+  }
     // console.log(str);
     console.log (licenseBadge)
     console.log(licenseLink)
     const generateFile = (answers) => {
-      return `# ${answers.title}
+      return `# ${answers.title}        ${licenseBadge}
 ${answers.description}
 
 
@@ -85,8 +103,11 @@ ${answers.description}
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
+- [Contribution](#contribution)
+- [Testing](#testing)
+- [Features](#features)
+- [Contact](#questions)
+${licenseTOC}
 
 
 ## Installation
@@ -95,7 +116,7 @@ ${answers.install}
 ## Usage
 ${answers.userUse}
 
-## How to Contribute
+## Contribution
 ${answers.contribute}
 
 ## Testing
@@ -106,7 +127,10 @@ ${answers.feature}
 
 ## Questions
 Github Username:${answers.github}
-If you have any additional questions please email me at ${answers.email}`
+If you have any additional questions please email me at ${answers.email}
+
+${licenseSection}
+${licenseLink}`
 
 
 
