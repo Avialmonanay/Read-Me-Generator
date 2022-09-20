@@ -1,6 +1,10 @@
+
+//creates the license function and its seperate actions renderLicenseBadge/renderLicenseLink
 function License() {}
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+
+
+
+//creates the license badge based on user input.
 License.prototype.renderLicenseBadge = function (license) {
   if (!license) {
     return ` `
@@ -24,8 +28,7 @@ License.prototype.renderLicenseBadge = function (license) {
 
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// Returns license information based on user input and also applies the license input fields automatically for the user.
 License.prototype.renderLicenseLink = function (license, licenseYear, licenseName) {
   if (!license) {
     ` `
@@ -957,6 +960,6 @@ Public License instead of this License.  But first, please read
 }
 
 
-
+//exports results to be accessed by other pages.
 module.exports = License
 
