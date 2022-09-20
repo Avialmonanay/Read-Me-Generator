@@ -1,7 +1,10 @@
+//Required resources
 const fs = require('fs')
 const inquirer = require('inquirer');
 const License = require('./generateMarkdown');
-// TODO: Create an array of questions for user input
+
+
+// inquirer questions created to intake user information and assign it a variable.
 inquirer
   .prompt([
     {
@@ -66,12 +69,15 @@ inquirer
         name: 'lname',
       },
   ])
+  //with inquirer answers finesh we call to the "generateMarkdown.js" to generate a license image and license information to be called on by index.js
 .then((answers) => {
   const license = new License()
   const str = answers.license;
   const strYear = answers.year;
   const strName = answers.lname;
   const licenseBadgeRender = license.renderLicenseBadge(str);
+  
+  //if licenseBadgeRender or licenseLinkRender does not exist then set their variables to emptry strings. Else set the variables with user input
   if (!licenseBadgeRender){
     var licenseBadge = ""
   }
@@ -91,9 +97,8 @@ inquirer
     var licenseLink = licenseLinkRender
     var licenseTOC = "- [License](#license)"
   }
-    // console.log(str);
-    console.log (licenseBadge)
-    console.log(licenseLink)
+
+    //generates the README Format with user input. Calls to the writToFile function
     const generateFile = (answers) => {
       return `# ${answers.title}        ${licenseBadge}
 ${answers.description}
@@ -131,14 +136,13 @@ If you have any additional questions please email me at ${answers.email}
 
 ${licenseSection}
 ${licenseLink}`
-
-
-
-
-
     };
+
+
     writeToFile('README.md', generateFile(answers), answers);
   });
+
+  //creates the README.md with data provided from above.
 function writeToFile(fileName, data,) {
     console.log(fileName)
 
@@ -149,11 +153,3 @@ function writeToFile(fileName, data,) {
 }
 
 
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
-
-// // TODO: Create a function to initialize app
-// function init() {}
-
-// // Function call to initialize app
-// init();
