@@ -29,7 +29,9 @@ Users who would like to contrbute to this can reach out to the developer (contac
 
 ## Questions
 Github Username: Avialmonanay
+
 If you have any additional questions please email me at: Rexxmadsen@gmail.com with the subject "Read Me Generator"
+
 Repository: https://github.com/Avialmonanay/Read-Me-Generator
 
 
