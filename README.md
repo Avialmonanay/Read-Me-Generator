@@ -28,7 +28,7 @@ Application uses Node.js and the npm inquirer package to ask the user questions 
 Users who would like to contrbute to this can reach out to the developer (contact information below)
 
 ## Questions
-Github Username: Avialmonanay
+Github Profile: [ Avialmonanay](https://github.com/Avialmonanay)
 
 If you have any additional questions please email me at: Rexxmadsen@gmail.com with the subject "Read Me Generator"
 
