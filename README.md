@@ -21,6 +21,8 @@ After the appropriate packages have been installed highlighted above. You will r
 
 license information at this point is option. You can leave the fields regarding that information blank. Future development includes being able to dynamically update the entire README.md allowing all fields to be optional allowing for a more customizable experience.
 
+This Readme was  generated using the application however some fields were ommitted of this use case.You can view a full sample generated using this Application in my repository name "SAMPLEREADME.MD 
+
 ## Features
 Application uses Node.js and the npm inquirer package to ask the user questions and create a README.md.
 
